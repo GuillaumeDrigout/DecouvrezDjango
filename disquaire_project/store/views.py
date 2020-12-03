@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 # from .models import ALBUMS
 from .models import Album, Artist, Contact, Booking
+from django.template import loader
 # Create your views here.
 
 
@@ -12,7 +13,8 @@ def index(request):
     # because it's now an attribute.
     formatted_albums = ["<li>{}</li>".format(album.title) for album in albums]
     message = """<ul>{}</ul>""".format("\n".join(formatted_albums))
-    return HttpResponse(message)
+    template = loader.get_template('store/index.html')
+    return HttpResponse(template.render(request=request))
 
 
 def listing(request):
