@@ -1,5 +1,7 @@
 from .models import Album, Artist, Contact, Booking
 from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+
 
 # Create your views here.
 
@@ -21,7 +23,7 @@ def listing(request):
 
 
 def detail(request, album_id):
-    album = Album.objects.get(pk=album_id)
+    album = get_object_or_404(Album, pk=album_id)
     artists = [artist.name for artist in album.artists.all()]
     artists_name = " ".join(artists)
     context = {
