@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'ga!jr6ms*9o)r@(z!sme62b^zn$v%1s_ta=$u89%lq5z^-&4iu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'disquaire_project.wsgi.application'
 # [Gilles] Databases import from config file (JSON)
 import json
 
-with open('config.json') as f:
+with open('/home/guillaume/PycharmProjects/DecouvrezDjango/disquaire_project/config.json') as f:
   DATABASES = json.load(f)
 
 
