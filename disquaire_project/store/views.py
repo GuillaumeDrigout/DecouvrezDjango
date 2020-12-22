@@ -2,7 +2,8 @@ from .models import Album, Artist, Contact, Booking
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from .forms import ContactForm
+from .forms import ContactForm, ParagraphErrorList
+
 
 
 # Create your views here.
@@ -46,7 +47,7 @@ def detail(request, album_id):
     'thumbnail': album.picture
   }
   if request.method == 'POST':
-    form = ContactForm(request.POST)
+    form = ContactForm(request.POST, error_class=ParagraphErrorList)
     if form.is_valid():
       email = form.cleaned_data['email']
       name = form.cleaned_data['name']
@@ -80,6 +81,7 @@ def detail(request, album_id):
     form = ContactForm()
   context['form'] = form
   return render(request, 'store/detail.html', context)
+
 
 
 def search(request):
